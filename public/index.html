@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ImageMotion – Turn your image into animation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><div class="logo">ImageMotion</div><nav><a href="#" id="homeLink">Home</a><a href="#about">About</a></nav></header>
+
+<main>
+  <section id="uploadView" class="view active">
+    <h1>Turn your image<br><span>into animation</span></h1>
+    <p class="sub">Transform a static image into a moving video.</p>
+    <label id="dropzone" class="dropzone" for="fileInput">
+      <div class="icon">📷</div>
+      <strong>Upload your image</strong>
+      <span>Drag &amp; drop or click to choose a file</span>
+      <small>JPG, JPEG, PNG, WEBP · max 10 MB</small>
+      <input id="fileInput" type="file" accept=".jpg,.jpeg,.png,.webp" hidden>
+    </label>
+    <p id="uploadError" class="error"></p>
+  </section>
+
+  <section id="settingsView" class="view">
+    <h2>Animate image</h2>
+    <div class="grid">
+      <div class="card"><h3>Original image</h3><img id="preview" alt="Preview"></div>
+      <div class="card">
+        <h3>Settings</h3>
+        <fieldset id="styles">
+          <legend>Animation style</legend>
+          <label><input type="radio" name="style" value="zoom-in" checked> Zoom In</label>
+          <label><input type="radio" name="style" value="zoom-out"> Zoom Out</label>
+          <label><input type="radio" name="style" value="pan"> Pan</label>
+          <label><input type="radio" name="style" value="rotate"> Rotate</label>
+          <label><input type="radio" name="style" value="cinematic"> Cinematic</label>
+        </fieldset>
+        <label class="row">Duration
+          <select id="duration"><option>3</option><option selected>5</option><option>8</option></select>
+        </label>
+        <label class="row">Format
+          <select id="format"><option value="mp4">MP4</option><option value="gif">GIF</option></select>
+        </label>
+        <label class="slider">Motion <span>Low → High</span><input id="motion" type="range" min="0" max="100" value="50"></label>
+        <label class="slider">Speed <span>Slow → Fast</span><input id="speed" type="range" min="0" max="100" value="50"></label>
+        <button id="generateBtn" class="primary">Generate Animation</button>
+        <div id="progress" class="progress" hidden><div class="spinner"></div> Generating frames &amp; encoding video…</div>
+        <p id="genError" class="error"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="resultView" class="view">
+    <h2>Your animation</h2>
+    <div class="card result">
+      <div id="player"></div>
+      <p id="meta"></p>
+      <div class="actions">
+        <button id="replayBtn" class="secondary">▶ Preview</button>
+        <a id="downloadBtn" class="primary" href="#" download>Download Animation</a>
+        <button id="anotherBtn" class="secondary">Create Another</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <h3>About</h3>
+    <p>Your image becomes many slightly different frames (zoom, pan, rotation) generated with Sharp, which FFmpeg then combines into a short MP4 or GIF.</p>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
